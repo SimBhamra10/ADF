@@ -3,7 +3,7 @@
 	"properties": {
 		"activities": [
 			{
-				"name": "Lookup1",
+				"name": "lookup",
 				"type": "Lookup",
 				"dependsOn": [],
 				"policy": {
@@ -16,6 +16,7 @@
 				"typeProperties": {
 					"source": {
 						"type": "AzureSqlSource",
+						"sqlReaderQuery": "SELECT *\nFROM dbo.metadata_config\nWHERE active_flag = 'Y'",
 						"queryTimeout": "02:00:00",
 						"partitionOption": "None"
 					},
@@ -33,7 +34,7 @@
 				"onInactiveMarkAs": "Succeeded",
 				"dependsOn": [
 					{
-						"activity": "Lookup1",
+						"activity": "lookup",
 						"dependencyConditions": [
 							"Succeeded"
 						]
